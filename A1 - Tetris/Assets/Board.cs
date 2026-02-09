@@ -21,6 +21,10 @@ public class Board : MonoBehaviour
 
     Dictionary<Vector3Int, Piece> pieces = new Dictionary<Vector3Int, Piece>();
 
+    int startPiece = 0;
+    List<Tetronimo> tetronimoOrder = new List<Tetronimo>
+    { Tetronimo.O, Tetronimo.B, Tetronimo.O, Tetronimo.J, Tetronimo.I, Tetronimo.S, Tetronimo.Z, Tetronimo.L, Tetronimo.J, Tetronimo.L, Tetronimo.T, Tetronimo.L, Tetronimo.J, Tetronimo.B, Tetronimo.T};
+
     int left
     {
         get { return -boardSize.x / 2; }
@@ -73,20 +77,26 @@ public class Board : MonoBehaviour
 
     public void SpawnPiece()
     {
+
+        if (startPiece == tetronimoOrder.Count - 1) 
+            tetrisManager.SetGameOver(true);
+
         activePiece = Instantiate(piecePrefab);
 
-        Tetronimo t = (Tetronimo)Random.Range(0, tetronimos.Length);
+        //Tetronimo t = (Tetronimo)Random.Range(0, tetronimos.Length);
+        Tetronimo t = tetronimoOrder[startPiece];
 
         activePiece.Initialize(this, t);
 
         CheckEndGame();
 
         Set(activePiece);
+        startPiece++;
     }
 
     void CheckEndGame()
     {
-        if (!IsPositionValid(activePiece, activePiece.position))
+        if (!IsPositionValid(activePiece, activePiece.position) || Time.deltaTime == 10.0f)
         {
             tetrisManager.SetGameOver(true);
 
@@ -109,9 +119,9 @@ public class Board : MonoBehaviour
 
         activePiece = null;
 
-        tilemap.ClearAllTiles();
+        //tilemap.ClearAllTiles();
 
-        pieces.Clear();
+        //pieces.Clear();
 
         SpawnPiece();
     }
