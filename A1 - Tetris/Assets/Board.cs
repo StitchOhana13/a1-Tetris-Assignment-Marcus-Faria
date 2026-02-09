@@ -22,6 +22,8 @@ public class Board : MonoBehaviour
     Dictionary<Vector3Int, Piece> pieces = new Dictionary<Vector3Int, Piece>();
 
     int startPiece = 0;
+
+    // Create the order in which tetronimos will be called upon
     List<Tetronimo> tetronimoOrder = new List<Tetronimo>
     { Tetronimo.O, Tetronimo.B, Tetronimo.O, Tetronimo.J, Tetronimo.I, Tetronimo.S, Tetronimo.Z, Tetronimo.L, Tetronimo.J, Tetronimo.L, Tetronimo.T, Tetronimo.L, Tetronimo.J, Tetronimo.B, Tetronimo.T};
 
@@ -84,6 +86,8 @@ public class Board : MonoBehaviour
         activePiece = Instantiate(piecePrefab);
 
         //Tetronimo t = (Tetronimo)Random.Range(0, tetronimos.Length);
+        
+        // utilize created tetronimo spawn order
         Tetronimo t = tetronimoOrder[startPiece];
 
         activePiece.Initialize(this, t);
