@@ -1,1 +1,3 @@
 # a1-Tetris-Assignment-Marcus-Faria
+
+I wanted to include a README to explain some stuff the happened during this assignment. On the original final day this assignment could be handed in, my files corrupted and I had to rewrite all of the code, thankfully you provided us with the additional extension. As for the video you will see me delete some pieces that do not disappear when the line they are apart of is cleared. I do this so I can show the intended flow of the level. I was not able to figure out why the pieces would not disappear and I ackowledge that I did not properly complete this assignment but I still wanted to show how the level would have gone had I finished it properly.
